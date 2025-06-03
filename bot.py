@@ -10,7 +10,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-TOKEN = "7502426655:AAGtgp8JGkn2JEYW5rGsm9KLFn8HAlWNhdg"
+TOKEN = "-"
 
 def start(update: Update, context):
     update.message.reply_text('Привет! Я бот для фильтрации токсичных сообщений. Добавь меня в чат и я наведу там порядок')
