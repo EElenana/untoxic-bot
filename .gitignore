@@ -1,0 +1,28 @@
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Log files
+*.log
+*.sqlite
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Project specific exclusions
+*.db
+*.sqlite3
+*.env
