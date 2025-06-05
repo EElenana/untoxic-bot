@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import accuracy_score
 
 data_list = []
 with open("data/dataset1.txt", encoding='utf-8') as file:
@@ -34,12 +34,15 @@ y_pred = model.predict(X_test_vectorized)
 
 accuracy = accuracy_score(y_test, y_pred)
 
+
 def predict_toxicity(comment):
     comment_vectorized = vectorizer.transform([comment])
     prediction = model.predict(comment_vectorized)
     return True if prediction[0] == 1 else False
 
+
 # Пример
-#new_comment = "Это просто ужасно! Кто вообще мог выпустить такой брак? Видимо, делали с закрытыми глазами. Никому не рекомендую связываться с этим дерьмом!" 
-#result = predict_toxicity(new_comment)
-#print(f'Комментарий: "{new_comment}" - {result}')
+# new_comment = "Это просто ужасно! Кто вообще мог выпустить такой брак?"
+# "Видимо, делали с закрытыми глазами. Никому не рекомендую связываться с этим дерьмом!" 
+# result = predict_toxicity(new_comment)
+# print(f'Комментарий: "{new_comment}" - {result}')
