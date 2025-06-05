@@ -22,8 +22,7 @@ jobs:
         pip install pytest flake8
 
     - name: Run unit tests
-      run: |
-        pytest
+      run: PYTHONPATH=. pytest
 
     - name: Run flake8 (PEP8 check)
       run: |
