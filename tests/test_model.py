@@ -1,6 +1,3 @@
-import os
-import sys
-
 from model import predict_toxicity
 
 
