@@ -14,8 +14,10 @@ TOKEN = "-"
 
 
 def start(update: Update, context):
-    update.message.reply_text('Привет! Я бот для фильтрации токсичных сообщений.'
-    'Добавь меня в чат и я наведу там порядок')
+    update.message.reply_text(
+        'Привет! Я бот для фильтрации токсичных сообщений.'
+        'Добавь меня в чат и я наведу там порядок'
+    )
 
 
 def handle_message(update: Update, context):
