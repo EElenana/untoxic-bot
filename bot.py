@@ -13,8 +13,13 @@ logger = logging.getLogger(__name__)
 
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
+
 def start(update: Update, context):
-    update.message.reply_text('Привет! Я бот для фильтрации токсичных сообщений. Добавь меня в чат и я наведу там порядок')
+    update.message.reply_text(
+        'Привет! Я бот для фильтрации токсичных сообщений.'
+        'Добавь меня в чат и я наведу там порядок'
+    )
+
 
 def handle_message(update: Update, context):
     if predict_toxicity(update.message.text):
@@ -23,6 +28,7 @@ def handle_message(update: Update, context):
             logger.info(f"Удалено сообщение от {update.message.from_user.id}")
         except Exception as e:
             logger.error(f"Ошибка удаления: {e}")
+
 
 def main():
     updater = Updater(TOKEN, use_context=True)
@@ -33,6 +39,7 @@ def main():
 
     updater.start_polling()
     updater.idle()
+
 
 if __name__ == '__main__':
     main()
