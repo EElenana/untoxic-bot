@@ -2,6 +2,7 @@ import logging
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from model import predict_toxicity
+import os
 
 # Настройка логгирования
 logging.basicConfig(
@@ -10,7 +11,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-TOKEN = "-"
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 def start(update: Update, context):
     update.message.reply_text('Привет! Я бот для фильтрации токсичных сообщений. Добавь меня в чат и я наведу там порядок')
