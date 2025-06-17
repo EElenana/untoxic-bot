@@ -1,26 +1,24 @@
-import pytest
 from unittest.mock import MagicMock, patch
 from bot import handle_message
-from telegram import Update, Message, User, Chat
+import pytest
 
-@pytest.fixture
-def mock_update():
-    update = MagicMock(spec=Update)
-    update.message = MagicMock(spec=Message)
-    update.message.text = "test message"
-    update.message.from_user = MagicMock(spec=User)
-    update.message.from_user.id = 123
-    update.message.chat = MagicMock(spec=Chat)
-    return update
-
-def test_handle_message_toxic(mock_update):
+def test_handle_message_toxic():
+    """Тест обработки токсичного сообщения"""
+    # Создаем mock-объекты
+    mock_update = MagicMock()
+    mock_message = MagicMock()
+    mock_update.message = mock_message
+    
     with patch('bot.predict_toxicity', return_value=True):
-        with patch.object(mock_update.message, 'delete') as mock_delete:
-            handle_message(mock_update, None)
-            mock_delete.assert_called_once()
+        handle_message(mock_update, None)
+        mock_message.delete.assert_called_once()
 
-def test_handle_message_clean(mock_update):
+def test_handle_message_clean():
+    """Тест обработки нормального сообщения"""
+    mock_update = MagicMock()
+    mock_message = MagicMock()
+    mock_update.message = mock_message
+    
     with patch('bot.predict_toxicity', return_value=False):
-        with patch.object(mock_update.message, 'delete') as mock_delete:
-            handle_message(mock_update, None)
-            mock_delete.assert_not_called()
+        handle_message(mock_update, None)
+        mock_message.delete.assert_not_called()
