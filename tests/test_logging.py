@@ -24,4 +24,4 @@ def test_logging_on_error(caplog):
     with patch('bot.predict_toxicity', return_value=True):
         with caplog.at_level(logging.ERROR):
             handle_message(mock_update, None)
-            assert "Ошибка удаления: Test error" in caplog.text"
+            assert "Ошибка удаления: Test error" in caplog.text
