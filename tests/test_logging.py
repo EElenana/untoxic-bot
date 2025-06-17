@@ -8,7 +8,6 @@ def test_logging_on_message_deletion(caplog):
     mock_message = MagicMock()
     mock_message.from_user.id = 123
     mock_update.message = mock_message
-    
     with patch('bot.predict_toxicity', return_value=True):
         with caplog.at_level(logging.INFO):
             handle_message(mock_update, None)
@@ -20,7 +19,6 @@ def test_logging_on_error(caplog):
     mock_message = MagicMock()
     mock_message.delete.side_effect = Exception("Test error")
     mock_update.message = mock_message
-    
     with patch('bot.predict_toxicity', return_value=True):
         with caplog.at_level(logging.ERROR):
             handle_message(mock_update, None)
